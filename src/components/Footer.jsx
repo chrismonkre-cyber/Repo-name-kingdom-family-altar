@@ -1,4 +1,4 @@
-const footerLinks = [
+const FOOTER_LINKS = [
   { label: "Main Site", href: "https://kingdommandateministry.com" },
   { label: "Pathway", href: "https://pathway.kingdommandateministry.com" },
   { label: "Declarations", href: "https://declarations.kingdommandateministry.com" },
@@ -9,6 +9,8 @@ const footerLinks = [
   { label: "Battle Plan", href: "https://battle.kingdommandateministry.com" },
   { label: "Grace Vault", href: "https://grace.kingdommandateministry.com" },
   { label: "Revival Fire", href: "https://revival.kingdommandateministry.com" },
+  { label: "Family Altar", href: "https://family.kingdommandateministry.com" },
+  { label: "Marketplace Mandate", href: "https://marketplace.kingdommandateministry.com" },
   { label: "Bible Companion", href: "https://thebiblecompanion.online" },
   { label: "YouTube", href: "https://www.youtube.com/@KingdomMandateMinistry" },
   { label: "Contact", href: "mailto:kingdommm.chris@gmail.com" },
@@ -17,17 +19,22 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 bg-black/60 backdrop-blur-md border-t border-yellow-700/30 py-8 px-4">
-      <div className="max-w-5xl mx-auto text-center">
+    <footer className="relative z-10 backdrop-blur-md bg-red-950/50 border-t border-yellow-600/30 py-8 px-4">
+      <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-6">
-          {footerLinks.map(l => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="text-yellow-200 hover:text-white text-xs font-cinzel tracking-wide transition-colors">
-              {l.label}
+          {FOOTER_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-lora text-yellow-200/70 hover:text-yellow-300 transition-colors"
+            >
+              {link.label}
             </a>
           ))}
         </div>
-        <p className="text-yellow-200/80 text-xs font-lora">
+        <p className="text-center text-xs font-lora text-yellow-200/50">
           © 2026 Kingdom Mandate Ministry | Built for the Glory of GOD, by the Grace of GOD
         </p>
       </div>

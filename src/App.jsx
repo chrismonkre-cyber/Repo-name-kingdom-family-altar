@@ -6,10 +6,12 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
-import Layout from './components/Layout';
 import Home from './pages/Home';
 import Daily from './pages/Daily';
-import Altar from './pages/Altar';
+import Journey from './pages/Journey';
+import Chains from './pages/Chains';
+import Mind from './pages/Mind';
+import Prayer from './pages/Prayer';
 import Journal from './pages/Journal';
 import Resources from './pages/Resources';
 import About from './pages/About';
@@ -40,14 +42,15 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/daily" element={<Daily />} />
-        <Route path="/altar" element={<Altar />} />
-        <Route path="/journal" element={<Journal />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/about" element={<About />} />
-      </Route>
+      <Route path="/" element={<Home />} />
+      <Route path="/daily" element={<Daily />} />
+      <Route path="/journey" element={<Journey />} />
+      <Route path="/chains" element={<Chains />} />
+      <Route path="/mind" element={<Mind />} />
+      <Route path="/prayer" element={<Prayer />} />
+      <Route path="/journal" element={<Journal />} />
+      <Route path="/resources" element={<Resources />} />
+      <Route path="/about" element={<About />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

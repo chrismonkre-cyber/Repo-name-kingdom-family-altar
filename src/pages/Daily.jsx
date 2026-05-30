@@ -1,123 +1,136 @@
 import { useState } from "react";
-import PageBackground from "../components/PageBackground";
-import HeroSection from "../components/HeroSection";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import PageWrapper from "../components/PageWrapper";
+import PageHeader from "../components/PageHeader";
 import GlassCard from "../components/GlassCard";
 
-const days = [
+const DAYS = [
   {
-    theme: "God's Presence in the Home",
-    scripture: "\"For where two or three gather in my name, there am I with them.\" — Matthew 18:20",
-    encouragement: "When your family gathers to pray, even briefly, God's presence fills the room. You don't need perfection — you need faithfulness.",
-    prayer: "Father, let Your presence fill our home today. Let every room, every conversation, and every moment be touched by Your Spirit. We invite You in, Lord.",
-    declaration: "Our home is a dwelling place of God's presence. The Holy Spirit lives here.",
-    action: "Gather your family for 5 minutes of prayer before or after a meal today.",
-    question: "Where have you felt God's presence most in our home lately?"
+    theme: "Freedom in Christ",
+    scripture: "\"So if the Son sets you free, you will be free indeed.\" — John 8:36",
+    encouragement: "Freedom is not something you earn. It is a gift already purchased by Jesus. He has already broken the chains. Today, choose to believe it and walk in it.",
+    prayer: "Lord Jesus, I thank You that You came to set me free. I receive Your freedom today — not because I deserve it, but because You paid for it. Help me walk in the liberty You have already given me. In Jesus' name, Amen.",
+    declaration: "I am free in Christ. No chain can hold me. No bondage defines me. I walk in the freedom the Son has given me, and it is real and lasting.",
+    action: "Write down one area where you need to receive freedom today. Surrender it to Jesus in prayer.",
+    reflection: "Where in my life am I still living as if I'm bound, even though Jesus says I'm free?",
   },
   {
-    theme: "Love and Unity",
-    scripture: "\"Above all, put on love, which binds everything together in perfect harmony.\" — Colossians 3:14",
-    encouragement: "Love is not just a feeling — it's a daily choice. Unity in the home starts with humility, patience, and grace.",
-    prayer: "Lord, bind our family together in love. Remove division, offense, and pride. Let us walk in unity and grace with one another.",
-    declaration: "We are a family of love. We choose unity. We walk in grace.",
-    action: "Each family member tells another one thing they appreciate about them.",
-    question: "Is there anything between us that we need to forgive or release today?"
+    theme: "No Longer a Slave to Fear",
+    scripture: "\"For God has not given us a spirit of fear, but of power and of love and of a sound mind.\" — 2 Timothy 1:7",
+    encouragement: "Fear is a liar. It tells you that God is not enough, that you are not safe, that tomorrow is uncertain. But the Spirit of God within you is greater than any fear.",
+    prayer: "Father, I renounce the spirit of fear. I receive Your spirit of power, love, and a sound mind. Where fear has spoken, let Your truth speak louder. In Jesus' name, Amen.",
+    declaration: "I am not a slave to fear. I am a child of God. I have been given power, love, and a sound mind. Fear has no authority over me.",
+    action: "Name one fear that has been controlling your thoughts. Speak 2 Timothy 1:7 over it out loud three times.",
+    reflection: "What fear have I been treating as truth instead of recognizing it as a lie?",
   },
   {
-    theme: "Peace Over the Household",
-    scripture: "\"Peace I leave with you; my peace I give you.\" — John 14:27",
-    encouragement: "The peace of Christ is not the absence of trouble — it is the presence of God in the middle of it. Speak peace over your home.",
-    prayer: "Prince of Peace, we invite Your shalom into our home. Calm every anxious heart. Still every storm. Let peace reign here.",
-    declaration: "Peace rules in our home. Anxiety has no authority here. We rest in the peace of Christ.",
-    action: "Play worship music softly in your home for 15 minutes and let it shift the atmosphere.",
-    question: "What is stealing our peace right now, and how can we give it to God?"
+    theme: "Renewed Mind",
+    scripture: "\"Do not conform to the pattern of this world, but be transformed by the renewing of your mind.\" — Romans 12:2",
+    encouragement: "Your mind is the battlefield. The enemy wants to keep you thinking old thoughts, believing old lies. But God's Word transforms you from the inside out.",
+    prayer: "Lord, renew my mind today. Remove every thought that contradicts Your Word. Replace every lie with Your truth. Let my thinking be aligned with heaven. In Jesus' name, Amen.",
+    declaration: "My mind is being renewed by the Word of God. I do not conform to the pattern of this world. I think with the mind of Christ.",
+    action: "Choose one lie you've been believing. Write down the truth from Scripture that replaces it. Meditate on it throughout the day.",
+    reflection: "What thought pattern has been holding me back from experiencing God's best?",
   },
   {
-    theme: "Raising Children in Truth",
-    scripture: "\"Train up a child in the way he should go; even when he is old he will not depart from it.\" — Proverbs 22:6",
-    encouragement: "Your children are watching. What you model matters more than what you lecture. Let them see your faith, not just hear it.",
-    prayer: "God, give us wisdom to raise our children in truth and love. Protect their hearts. Let them know You from a young age.",
-    declaration: "Our children are mighty in God. They will love truth, walk in purpose, and follow Christ all their days.",
-    action: "Share one Bible story or truth with your children at bedtime tonight.",
-    question: "What is one truth we want our children to carry with them for life?"
+    theme: "Forgiven and Free",
+    scripture: "\"As far as the east is from the west, so far has He removed our transgressions from us.\" — Psalm 103:12",
+    encouragement: "Guilt and shame try to keep you chained to the past. But Jesus has removed your sin completely. He doesn't hold it against you. Receive His forgiveness and walk forward.",
+    prayer: "Father, I thank You that my sins are forgiven — completely, permanently, and freely. I release every guilt and shame that has kept me stuck. I receive Your grace today. In Jesus' name, Amen.",
+    declaration: "I am forgiven. My past does not define me. God has removed my transgressions as far as the east is from the west. I walk in His grace today.",
+    action: "Write a letter of surrender to God, releasing one thing you've been carrying guilt about. Then tear it up or delete it as a symbol of letting go.",
+    reflection: "Am I still carrying guilt that God has already forgiven? What would it look like to truly let it go?",
   },
   {
-    theme: "Forgiveness and Grace",
-    scripture: "\"Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you.\" — Ephesians 4:32",
-    encouragement: "No family is perfect. Forgiveness is the glue that holds homes together. Let grace be louder than grievance.",
-    prayer: "Lord, teach us to forgive quickly and love deeply. Heal any hurt between us. Let our home be a place of grace.",
-    declaration: "We are a family of forgiveness. We release every offense. Grace covers this home.",
-    action: "If there is any unresolved conflict, take a moment to apologize and forgive — even if it's small.",
-    question: "Is there something we've been holding onto that we need to release?"
+    theme: "Breaking Old Patterns",
+    scripture: "\"Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!\" — 2 Corinthians 5:17",
+    encouragement: "Old habits, cycles, and patterns do not define your future. In Christ, you are a brand-new creation. The old ways can be broken by the power of the Holy Spirit.",
+    prayer: "Lord, I surrender my old patterns to You. Break the cycles that have kept me stuck. I choose the new thing You are doing in my life. I step into who You say I am. In Jesus' name, Amen.",
+    declaration: "I am a new creation in Christ. Old patterns are broken. Old cycles are finished. I walk in the newness of life that God has prepared for me.",
+    action: "Identify one old pattern or cycle in your life. Write down the new pattern God is calling you into. Take one step toward it today.",
+    reflection: "What old pattern keeps pulling me back? What does the 'new creation' version of this area look like?",
   },
   {
-    theme: "Courage and Faith",
-    scripture: "\"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.\" — Joshua 1:9",
-    encouragement: "Your family was not made for fear. God has given you courage, boldness, and faith to face anything together.",
-    prayer: "God, fill our family with boldness. When fear comes, remind us that You are with us. We will not shrink back.",
-    declaration: "We are a courageous family. We do not live in fear. The Lord is with us.",
-    action: "Share one area where you need courage and pray together over it.",
-    question: "What is one bold step of faith God might be calling our family to take?"
+    theme: "Walking in Authority",
+    scripture: "\"Behold, I give you the authority to trample on serpents and scorpions, and over all the power of the enemy.\" — Luke 10:19",
+    encouragement: "You are not a victim. Jesus gave you authority over the enemy. Every lie, every attack, every temptation must submit to the name of Jesus when you stand in faith.",
+    prayer: "Lord Jesus, I thank You for the authority You have given me. I stand against every scheme of the enemy. I resist fear, doubt, and oppression. I walk in the victory You have already won. In Jesus' name, Amen.",
+    declaration: "I have authority in Jesus Christ. The enemy has no power over me. I trample on every lie, every fear, and every attack in the name of Jesus.",
+    action: "Speak out loud: 'In the name of Jesus, I take authority over [name the struggle].' Stand firm and do not back down.",
+    reflection: "Where in my life have I been living as a victim instead of standing in the authority Christ gave me?",
   },
   {
-    theme: "Family Legacy",
-    scripture: "\"A good man leaves an inheritance to his children's children.\" — Proverbs 13:22",
-    encouragement: "Legacy is not just what you leave behind — it's what you build every day. Every prayer, every act of love, every moment of faith is part of your family's legacy.",
-    prayer: "Lord, help us build a legacy that outlasts us. Let our faith, love, and devotion echo for generations to come.",
-    declaration: "We are building a Kingdom legacy. What we plant today will bless generations after us.",
-    action: "Write down one value or truth your family wants to be known for.",
-    question: "What do we want our grandchildren to say about the faith of this family?"
-  }
+    theme: "Living Free and Staying Free",
+    scripture: "\"It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery.\" — Galatians 5:1",
+    encouragement: "Freedom is not a one-time event — it is a daily walk. Guard what God has given you. Stay in the Word. Stay in prayer. Stay in community. Stand firm.",
+    prayer: "Father, I thank You for the freedom I have in Christ. Help me guard it fiercely. Keep me rooted in Your Word, connected to Your Spirit, and surrounded by faith. In Jesus' name, Amen.",
+    declaration: "I stand firm in freedom. I will not be burdened again by a yoke of slavery. Christ has set me free, and I choose to stay free every single day.",
+    action: "Create a personal 'freedom guard' plan: daily Scripture, daily prayer, weekly accountability, and a worship routine that keeps your spirit strong.",
+    reflection: "What practical steps can I take this week to guard the freedom God has given me?",
+  },
 ];
 
 export default function Daily() {
-  const dayIndex = new Date().getDay();
-  const [selected, setSelected] = useState(dayIndex);
-  const day = days[selected];
+  const [day, setDay] = useState(0);
+  const d = DAYS[day];
 
   return (
-    <div className="relative min-h-screen">
-      <PageBackground
-        desktopImg="https://media.base44.com/images/public/user_69a2073c194ba1099feee8ab/18118a0da_daily-desktop.png"
-        mobileImg="https://media.base44.com/images/public/user_69a2073c194ba1099feee8ab/a36c79b03_daily-mobile.png"
-      />
-      <div className="relative z-10 max-w-4xl mx-auto px-4 pb-16">
-        <HeroSection title="Today's Family Word" subtitle="One day at a time. Pray together. Grow together." />
+    <PageWrapper pageKey="daily">
+      <div className="min-h-screen flex items-start justify-center px-4 py-16 md:py-20">
+        <div className="max-w-3xl w-full">
+          <PageHeader
+            title="Daily Freedom Word"
+            subtitle="Scripture. Prayer. Declaration. Action."
+          />
 
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map((d, i) => (
-            <button key={d} onClick={() => setSelected(i)}
-              className={`px-3 py-1.5 rounded font-cinzel text-xs font-bold transition-colors ${selected === i ? "bg-yellow-600 text-black" : "bg-red-900/50 text-yellow-200 border border-yellow-600/30 hover:bg-red-800/60"}`}>
-              {d}
+          {/* Day selector */}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <button
+              onClick={() => setDay(Math.max(0, day - 1))}
+              disabled={day === 0}
+              className="p-2 rounded-full bg-red-950/50 border border-yellow-600/30 text-yellow-300 hover:bg-red-900/60 disabled:opacity-30 transition-all"
+            >
+              <ChevronLeft className="w-5 h-5" />
             </button>
-          ))}
+            <span className="font-cinzel text-sm text-yellow-200 font-semibold">
+              Day {day + 1} of {DAYS.length}
+            </span>
+            <button
+              onClick={() => setDay(Math.min(DAYS.length - 1, day + 1))}
+              disabled={day === DAYS.length - 1}
+              className="p-2 rounded-full bg-red-950/50 border border-yellow-600/30 text-yellow-300 hover:bg-red-900/60 disabled:opacity-30 transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          <GlassCard className="space-y-6">
+            <h2 className="font-cinzel text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-200 text-center">
+              {d.theme}
+            </h2>
+
+            <Section label="Scripture" content={d.scripture} />
+            <Section label="Encouragement" content={d.encouragement} />
+            <Section label="Prayer" content={d.prayer} />
+            <Section label="Declaration" content={d.declaration} />
+            <Section label="Action Step" content={d.action} />
+            <Section label="Reflection" content={d.reflection} />
+          </GlassCard>
         </div>
-
-        <GlassCard className="max-w-3xl mx-auto space-y-6">
-          <h2 className="font-cinzel font-bold text-yellow-300 text-2xl text-center">{day.theme}</h2>
-          <p className="font-lora italic text-yellow-200/90 text-center text-sm">{day.scripture}</p>
-
-          <div>
-            <h4 className="font-cinzel text-yellow-400 font-bold text-sm mb-1">Family Encouragement</h4>
-            <p className="font-lora text-yellow-100/80 text-sm leading-relaxed">{day.encouragement}</p>
-          </div>
-          <div>
-            <h4 className="font-cinzel text-yellow-400 font-bold text-sm mb-1">Family Prayer</h4>
-            <p className="font-lora text-yellow-100/80 text-sm leading-relaxed">{day.prayer}</p>
-          </div>
-          <div>
-            <h4 className="font-cinzel text-yellow-400 font-bold text-sm mb-1">Family Declaration</h4>
-            <p className="font-lora text-yellow-100 font-semibold text-sm leading-relaxed">{day.declaration}</p>
-          </div>
-          <div>
-            <h4 className="font-cinzel text-yellow-400 font-bold text-sm mb-1">Action Step</h4>
-            <p className="font-lora text-yellow-100/80 text-sm leading-relaxed">{day.action}</p>
-          </div>
-          <div>
-            <h4 className="font-cinzel text-yellow-400 font-bold text-sm mb-1">Conversation Question</h4>
-            <p className="font-lora italic text-yellow-200/90 text-sm leading-relaxed">{day.question}</p>
-          </div>
-        </GlassCard>
       </div>
+    </PageWrapper>
+  );
+}
+
+function Section({ label, content }) {
+  return (
+    <div>
+      <h3 className="font-cinzel text-sm font-bold text-yellow-400 uppercase tracking-wider mb-2">
+        {label}
+      </h3>
+      <p className="font-lora text-yellow-50/90 leading-relaxed text-sm md:text-base">
+        {content}
+      </p>
     </div>
   );
 }
