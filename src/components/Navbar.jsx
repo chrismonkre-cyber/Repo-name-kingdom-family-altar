@@ -21,14 +21,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
         <Link to="/" className="flex items-center gap-2">
           <img src={LOGO} alt="Kingdom Mandate Ministry" className="h-10 md:h-12 w-auto rounded-full" />
-          <span className="hidden sm:inline font-cinzel text-yellow-300 font-bold text-sm md:text-base tracking-wide">Kingdom Family Altar</span>
+          <span className="hidden sm:inline font-cinzel text-yellow-200 font-bold text-sm md:text-base tracking-wide">Kingdom Family Altar</span>
         </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex gap-1">
           {links.map(l => (
             <Link key={l.to} to={l.to}
-              className={`px-3 py-1.5 rounded text-sm font-cinzel tracking-wide transition-colors ${pathname === l.to ? "bg-yellow-600/30 text-yellow-200" : "text-yellow-100/80 hover:text-yellow-200 hover:bg-yellow-600/20"}`}>
+              className={`px-3 py-1.5 rounded text-sm font-cinzel tracking-wide transition-colors ${pathname === l.to ? "bg-yellow-600/40 text-yellow-100" : "text-yellow-100 hover:text-white hover:bg-yellow-600/25"}`}>
               {l.label}
             </Link>
           ))}

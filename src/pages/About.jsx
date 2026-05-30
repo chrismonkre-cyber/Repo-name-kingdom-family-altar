@@ -13,15 +13,15 @@ export default function About() {
         <HeroSection title="About Kingdom Family Altar" subtitle="Helping families build homes of prayer, blessing, and Kingdom legacy." />
 
         <GlassCard className="mb-8">
-          <p className="font-lora text-yellow-100/90 text-sm md:text-base leading-relaxed mb-4">
+          <p className="font-lora text-yellow-50 text-sm md:text-base leading-relaxed mb-4">
             Kingdom Family Altar exists to help families create simple, Spirit-filled moments of prayer, Scripture, blessing, and worship in the home. This app is not about perfection; it is about building a daily altar where God is honored, families are strengthened, children are blessed, and faith becomes part of everyday life.
           </p>
-          <p className="font-lora text-yellow-100/90 text-sm md:text-base leading-relaxed">
+          <p className="font-lora text-yellow-50 text-sm md:text-base leading-relaxed">
             Kingdom Mandate Ministry exists to awaken believers, stir the fire of revival, and equip the Body of Christ to walk in purpose, power, and truth.
           </p>
         </GlassCard>
 
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
           <a href="https://kingdommandateministry.com" target="_blank" rel="noopener noreferrer"
             className="px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-black font-cinzel font-bold rounded-lg transition-colors shadow-lg">
             Visit Kingdom Mandate Ministry
@@ -31,6 +31,19 @@ export default function About() {
             Partner / Sow
           </a>
         </div>
+
+        <GlassCard>
+          <h2 className="font-cinzel font-bold text-yellow-200 text-xl mb-3">📲 Install This Free Kingdom App</h2>
+          <p className="font-lora text-yellow-50 text-sm md:text-base mb-4">
+            You can install Kingdom Family Altar on your phone, tablet, or computer without using an app store.
+          </p>
+          <ol className="font-lora text-yellow-50 text-sm md:text-base space-y-2 list-decimal list-inside">
+            <li>Open this app in your browser.</li>
+            <li>Tap your browser menu (the three dots or share icon).</li>
+            <li>Choose <strong className="text-yellow-200">"Add to Home Screen"</strong> or <strong className="text-yellow-200">"Install App"</strong>.</li>
+            <li>Open it anytime like a normal app — no app store needed.</li>
+          </ol>
+        </GlassCard>
       </div>
     </div>
   );

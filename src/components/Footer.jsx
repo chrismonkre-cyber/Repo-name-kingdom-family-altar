@@ -22,12 +22,12 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-6">
           {footerLinks.map(l => (
             <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="text-yellow-300/80 hover:text-yellow-200 text-xs font-cinzel tracking-wide transition-colors">
+              className="text-yellow-200 hover:text-white text-xs font-cinzel tracking-wide transition-colors">
               {l.label}
             </a>
           ))}
         </div>
-        <p className="text-yellow-200/60 text-xs font-lora">
+        <p className="text-yellow-200/80 text-xs font-lora">
           © 2026 Kingdom Mandate Ministry | Built for the Glory of GOD, by the Grace of GOD
         </p>
       </div>
